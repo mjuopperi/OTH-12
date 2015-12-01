@@ -5,11 +5,30 @@ apply plugin: 'jdepend'
 
 sourceCompatibility = 1.5
 version = '1.0'
+sourceSets {
+    main {
+        java {
+            srcDir 'src/pokerikadet/pokerikadet'
+        }
+    }
+    test {
+        java {
+            srcDir 'test/pokerikadet/pokerikadet'
+        }
+    }
+}
 jar {
     manifest {
         attributes 'Implementation-Title': 'Gradle Quickstart',
                    'Implementation-Version': version
     }
+}
+pmd {
+    ignoreFailures = true
+    sourceSets = [sourceSets.main]
+    targetJdk = 1.5
+    reportsDir = file('reports/pmd')
+    ruleSets = ['basic', 'braces']
 }
 
 repositories {
